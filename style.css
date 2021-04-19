@@ -63,6 +63,11 @@ body {
     box-shadow: 0 0 5px white;
 }
 
+.start-game:hover {
+    opacity: 0.8;
+    background-color: grey;
+}
+
 @media screen and (max-width: 800px) {
     .game-button {
         width: 100px;
