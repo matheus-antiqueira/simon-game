@@ -9,9 +9,9 @@ body {
 
 .game-text {
     font-family: 'Press Start 2P', cursive;
+    color: #FEF2BF;
     font-size: 3rem;
     line-height: 1.5;
-    color: #FEF2BF;
 }
 
 .game-board {
@@ -50,4 +50,29 @@ body {
 .pressed {
     box-shadow: 0 0 20px white;
     background-color: grey;
+}
+
+.start-game {
+    margin-top: 50px;
+    height: 70px;
+    width: 50%;
+    font-size: 1rem;
+    font-family: 'Press Start 2P', cursive;
+    color: #FEF2BF;
+    background-color: black;
+    box-shadow: 0 0 5px white;
+}
+
+@media screen and (max-width: 800px) {
+    .game-button {
+        width: 100px;
+        height: 100px;
+    }
+    .game-text {
+        font-size: 1.5rem;
+        line-height: 1.5;
+    }
+    .start-game {
+        width: 80%;
+    }
 }

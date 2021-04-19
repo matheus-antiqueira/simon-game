@@ -2,17 +2,15 @@ let sequence = [];
 let currentSequence = [];
 let currentPlay = 0;
 
-$(document).on('keydown', function (e) {
-    if (sequence.length === 0) {
-        initiateGame();
-    }
+$('button.start-game').click(function (e) {
+    initiateGame();
 });
 
 function initiateGame() {
     nextLevel();
 }
 
-$('button').click(function (e) {
+$('button.game-button').click(function (e) {
     clickButton(e.currentTarget.id);
     currentSequence.push(e.currentTarget.id.split('-')[1]);
     if (checkPlay()) {
