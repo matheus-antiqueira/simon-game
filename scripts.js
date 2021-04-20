@@ -7,29 +7,10 @@ $('button.start-game').click(function (e) {
 });
 
 function initiateGame() {
+    sequence = [];
+    currentPlay = 0;
+    currentSequence = [];
     nextLevel();
-}
-
-$('button.game-button').click(function (e) {
-    clickButton(e.currentTarget.id);
-    currentSequence.push(e.currentTarget.id.split('-')[1]);
-    if (checkPlay()) {
-        currentPlay++;
-
-        if (currentPlay == sequence.length)
-            nextLevel();
-
-    } else {
-        gameOver();
-    }
-});
-
-function checkPlay() {
-
-    if (sequence[currentPlay] == currentSequence[currentPlay])
-        return true;
-
-    return false;
 }
 
 function nextLevel() {
@@ -40,12 +21,16 @@ function nextLevel() {
     currentSequence = [];
 
     setTimeout(function () {
-        clickButton('button-' + randomNumber);
+        animateButton('button-' + randomNumber);
     }, 1000);
-
 }
 
-function clickButton(buttonId) {
+function getRandomNumber() {
+    let number = Math.floor(Math.random() * 4) + 1;
+    return number;
+}
+
+function animateButton(buttonId) {
 
     let numberButton = buttonId.split('-')[1];
 
@@ -68,15 +53,33 @@ function clickButton(buttonId) {
     setTimeout(function () {
         document.getElementById(buttonId).classList.remove("pressed");
     }, 100);
+}
 
+$('button.game-button').click(function (e) {
+    animateButton(e.currentTarget.id);
+    currentSequence.push(e.currentTarget.id.split('-')[1]);
+    if (checkPlay()) {
+        currentPlay++;
+
+        if (currentPlay == sequence.length)
+            nextLevel();
+
+    } else {
+        gameOver();
+    }
+});
+
+function checkPlay() {
+
+    if (sequence[currentPlay] == currentSequence[currentPlay])
+        return true;
+
+    return false;
 }
 
 function gameOver() {
 
-    sequence = [];
-    currentSequence = [];
-    currentPlay = 0;
-    $('.game-text').text("Game Over, Press Any Key to Restart");
+    $('.game-text').text("Game Over, Press the button to Restart");
 
     $('body').css('background-color', 'red');
     setTimeout(function () {
@@ -87,7 +90,3 @@ function gameOver() {
     audio.play();
 }
 
-function getRandomNumber() {
-    let number = Math.floor(Math.random() * 4) + 1;
-    return number;
-}
